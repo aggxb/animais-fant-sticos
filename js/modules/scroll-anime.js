@@ -1,10 +1,12 @@
+import debounce from './debounce.js';
+
 export default class ScrollAnime {
   constructor(sections) {
     this.sections = document.querySelectorAll(sections);
     this.windowHalf = window.innerHeight * 0.6;
 
     // bind(this) para fazer referência ao objeto da classe
-    this.checkDistance = this.checkDistance.bind(this);
+    this.checkDistance = debounce(this.checkDistance.bind(this), 50);
   }
 
   // pega a distância de cada seção em relação ao topo da página
